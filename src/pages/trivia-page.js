@@ -596,7 +596,7 @@ class Trivia extends Component {
         }
     }
 
-    timeOut(){
+    timeOut(){ 
         let questionNumber = this.state.selectedQuestions.indexOf(this.state.actualQuestion)
         let container = document.querySelector(".answers-container")
         container.classList.add("already-selected")
@@ -615,9 +615,7 @@ class Trivia extends Component {
     }
 
     hint(){
-        if(this.state.hinted){
-            return
-        }else if( this.state.hintsLeft === 0 ){
+        if(this.state.hinted || this.state.hintsLeft === 0 || this.state.questionAlreadySelected ){
             return
         }else if( this.state.hintsLeft === 1 && !this.state.hinted ){  
             this.setState({
@@ -645,77 +643,75 @@ class Trivia extends Component {
     render() { 
         return (
             <>
-            {/* <button onClick={this.startCountDown}> Test</button> 
-            <button onClick={this.test2}> Test</button>  */}
-            <NavBar/>
-            <section className='trivia-container menu'>
-                <div className="game-selector">
-                    <h2>Trivia of Legends</h2>
-                    <div className="selector quantity">
-                        <label>Choose a number of questions</label>
-                        <button name="5" onClick={this.setOption} data-select="totalQuestions" >5</button>
-                        <button name="10" onClick={this.setOption} data-select="totalQuestions" className='selected'>10</button>
-                        <button name="20" onClick={this.setOption} data-select="totalQuestions" >20</button>
+                <NavBar/>
+                <section className='trivia-container menu'>
+                    <div className="game-selector">
+                        <h2>Trivia of Legends</h2>
+                        <div className="selector quantity">
+                            <label>Choose a number of questions</label>
+                            <button name="5" onClick={this.setOption} data-select="totalQuestions" >5</button>
+                            <button name="10" onClick={this.setOption} data-select="totalQuestions" className='selected'>10</button>
+                            <button name="20" onClick={this.setOption} data-select="totalQuestions" >20</button>
+                        </div>
+                        <div className="selector time">
+                            <label>Choose the time for questions</label>
+                            <button name="50" onClick={this.setOption} data-select="maxTime" >5s</button>
+                            <button name="100" onClick={this.setOption} data-select="maxTime" className='selected'>10s</button>
+                            <button name="200" onClick={this.setOption} data-select="maxTime" >20s</button>
+                        </div>
+                        <div className="selector hints-selector">
+                            <label>Choose the number of hints</label>
+                            <button name="0" onClick={this.setOption} data-select="hints" className='selected'>NO HINTS</button>
+                            <button name="1" onClick={this.setOption} data-select="hints" >1 HINT</button>
+                            <button name="2" onClick={this.setOption} data-select="hints" >2 HINTS</button>
+                            <button name="3" onClick={this.setOption} data-select="hints" >3 HINTS</button>
+                        </div>
+                        <div className="selector start-selector">
+                            <button id="start" onClick={this.startTrivia}>Start</button>
+                        </div>
                     </div>
-                    <div className="selector time">
-                        <label>Choose the time for questions</label>
-                        <button name="50" onClick={this.setOption} data-select="maxTime" >5s</button>
-                        <button name="100" onClick={this.setOption} data-select="maxTime" className='selected'>10s</button>
-                        <button name="200" onClick={this.setOption} data-select="maxTime" >20s</button>
+                </section>
+                <section className='trivia-container game display-none'>
+                    <div className="pause display-none">
+                        <div className="pause-options">
+                            <button className='pause-button' type="button" onClick={this.pause}>
+                                <img src={this.state.pauseButton} alt="Pause" />
+                            </button>
+                            <button className='pause-button' type="button" onClick={this.backToMenu}>
+                                <img src={Menu} alt="Menu" />
+                            </button>
+                            <button className='pause-button' type="button" onClick={this.startTrivia}>
+                                <img src={Restart} alt="Restart" />
+                            </button>
+                        </div>
+                        <span>Game paused</span>
+                        <input type="button" value="Resume" onClick={this.resume}/>
                     </div>
-                    <div className="selector hints-selector">
-                        <label>Choose the number of hints</label>
-                        <button name="0" onClick={this.setOption} data-select="hints" className='selected'>NO HINTS</button>
-                        <button name="1" onClick={this.setOption} data-select="hints" >1 HINT</button>
-                        <button name="2" onClick={this.setOption} data-select="hints" >2 HINTS</button>
-                        <button name="3" onClick={this.setOption} data-select="hints" >3 HINTS</button>
+                    <span className='question'>{this.state.actualQuestion.question}</span>
+                
+                    <div className="answers-container">
+                        <button data-option="0" onClick={this.chooseAnswer}>{this.state.actualQuestion.answers[0].answer}</button>
+                        <button data-option="1" onClick={this.chooseAnswer}>{this.state.actualQuestion.answers[1].answer}</button>
+                        <button data-option="2" onClick={this.chooseAnswer}>{this.state.actualQuestion.answers[2].answer}</button>
+                        <button data-option="3" onClick={this.chooseAnswer}>{this.state.actualQuestion.answers[3].answer}</button>
                     </div>
-                    <div className="selector start-selector">
-                        <button id="start" onClick={this.startTrivia}>Start</button>
+                    <div className="timer-bar-container">
+                        <div className="timer-bar-tracker" style={{width: this.state.timeLeft, animationName: this.state.timeState, transitionDuration: ((this.state.maxTime / 1000) + "s")}}></div>
                     </div>
-                </div>
-            </section>
-            <section className='trivia-container game display-none'>
-                <div className="pause display-none">
-                    <div className="pause-options">
-                        <button className='pause-button' type="button" onClick={this.pause}>
-                            <img src={this.state.pauseButton} alt="Pause" />
-                        </button>
-                        <button className='pause-button' type="button" onClick={this.backToMenu}>
-                            <img src={Menu} alt="Menu" />
-                        </button>
-                        <button className='pause-button' type="button" onClick={this.startTrivia}>
-                            <img src={Restart} alt="Restart" />
-                        </button>
+                    <div className="trackers-container">
+                    <span className='tracker' unselectable="on">{"Question " + this.state.questionNumber + "/" + this.state.totalQuestions}</span>
+                    <span className={'tracker hints ' + this.state.hintsAvaible} unselectable="on" onClick={this.hint}><img src={Hint} alt="Hints" /> {this.state.hintsLeft}</span>
                     </div>
-                    <span>Game paused</span>
-                    <input type="button" value="Resume" onClick={this.resume}/>
-                </div>
-                <span className='question'>{this.state.actualQuestion.question}</span>
-               
-                <div className="answers-container">
-                    <button data-option="0" onClick={this.chooseAnswer}>{this.state.actualQuestion.answers[0].answer}</button>
-                    <button data-option="1" onClick={this.chooseAnswer}>{this.state.actualQuestion.answers[1].answer}</button>
-                    <button data-option="2" onClick={this.chooseAnswer}>{this.state.actualQuestion.answers[2].answer}</button>
-                    <button data-option="3" onClick={this.chooseAnswer}>{this.state.actualQuestion.answers[3].answer}</button>
-                </div>
-                <div className="timer-bar-container">
-                    <div className="timer-bar-tracker" style={{width: this.state.timeLeft, animationName: this.state.timeState, transitionDuration: ((this.state.maxTime / 1000) + "s")}}></div>
-                </div>
-                <div className="trackers-container">
-                <span className='tracker' unselectable="on">{"Question " + this.state.questionNumber + "/" + this.state.totalQuestions}</span>
-                <span className={'tracker hints ' + this.state.hintsAvaible} unselectable="on" onClick={this.hint}><img src={Hint} alt="Hints" /> {this.state.hintsLeft}</span>
-                </div>
-            </section>
-            <section className='trivia-container results display-none'>
-                <div className='results-display'>
-                    <span>{this.state.resultMessage}</span>
-                    <p>{"Your score was " + this.state.correctAnswers + " of " + this.state.totalQuestions}</p>
-                    <button onClick={this.startTrivia}>PLAY AGAIN</button>
-                    <button onClick={this.backToMenu}>BACK TO MENU</button>
-                    <Link draggable="false" to="/submit-question">Submit a question</Link>
-                </div>
-            </section>
+                </section>
+                <section className='trivia-container results display-none'>
+                    <div className='results-display'>
+                        <span>{this.state.resultMessage}</span>
+                        <p>{"Your score was " + this.state.correctAnswers + " of " + this.state.totalQuestions}</p>
+                        <button onClick={this.startTrivia}>PLAY AGAIN</button>
+                        <button onClick={this.backToMenu}>BACK TO MENU</button>
+                        <Link draggable="false" to="/submit-question">Submit a question</Link>
+                    </div>
+                </section>
            </>
         );
     }
