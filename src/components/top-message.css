@@ -1,0 +1,49 @@
+
+.top-message{
+    background-color: red;
+    width: 100%;
+    padding: 7.5px 25px;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    position: relative;
+  }
+  
+  .top-message img{
+    height: 23px;
+    filter: invert();
+    margin-right: 10px;
+    display: none;
+  }
+  
+  .top-message button{
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+  
+  }
+  
+  .top-message button:hover{
+    transform: translateY(-50%);
+  }
+  
+  .top-message button img{
+    display: block;
+    height: 25px;
+  }
+  
+  @media (min-width: 590px){
+    .top-message{
+      flex-flow: row;
+    }
+    .top-message img{
+      display: block;
+    }
+  }
+  

@@ -1,0 +1,57 @@
+.container-about{
+    display: flex;
+    flex-flow: column;
+    padding: 40px 30px;
+    gap: 30px
+}
+
+.about{
+    position: relative;
+    padding: 10px 20px;
+    z-index: 1;
+    background-position: center;
+    background-size: cover;
+}
+
+.about *{
+    z-index: 2;
+}
+
+.about::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.651);
+    z-index: -1;
+}
+
+
+.about h2{
+    margin-bottom: 20px;
+}
+
+.about p{
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    font-family: 'Roboto', sans-serif;
+    background: var(--cream); 
+    background: -webkit-linear-gradient(bottom, rgb(155, 108, 50), rgb(203, 172, 98)) padding-box text; 
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+
+#main-about{
+    background-image: url("https://images.contentstack.io/v3/assets/blt187521ff0727be24/blt13c1d379e80b8e24/60ee12f8feddb63580fcb6af/freljord_splash.jpg");
+}
+#gameplay-about{
+    background-image: url("https://images.contentstack.io/v3/assets/blt187521ff0727be24/blteebf080253c3eca1/60ee0d3c83f3965f5b9868bc/new-dawn.jpg");
+}
+#summoners-about{
+    background-image: url("https://images.contentstack.io/v3/assets/blt187521ff0727be24/blt1ab39bfee4a3057d/60ee0f894fba2021cde587f6/mount-targon_splash.jpg");
+}

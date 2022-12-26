@@ -1,0 +1,102 @@
+.question-submit-container{
+    padding: 50px 20px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.question-submit-container h2{
+    margin-bottom: 20px;
+}
+
+.question-submit{
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    font-size: 18px;
+    width: 100%;
+    align-items: center;
+}
+
+.question-submit input,
+.question-submit label,
+.question-submit span{
+    width: 100%;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 2.5px 5px;
+    border: none;
+    transition: all .125s ease-in ;
+}
+
+.question-submit textarea:focus,
+.question-submit input:focus,
+.question-submit input:hover{
+    outline: 3px var(--main-color) solid !important;
+}
+
+.question-submit span{
+    margin-top: 20px;
+}
+
+.question-submit label span,
+#general-message{
+    height: 29px;
+    color: red;
+    font-weight: 400;
+    padding-inline: 10px;
+}
+
+.question-submit label{
+    user-select: none;
+}
+
+.error{
+    outline: 3px solid red;
+    animation: error .125s ease 0s 2 alternate;
+}
+
+
+.question-submit input#submit{
+    background-color: var(--main-color);
+    color: white;
+    width: 250px;
+    border-radius: 50px;
+    padding: 5px 10px;
+}
+
+input#submit:hover,
+input#submit:focus{
+    background-color: var(--main2-color) ;
+    cursor: pointer;
+    outline: none !important;
+}
+
+.not-sended{
+    background-color: red !important;
+}
+.sended{
+    background-color: rgb(17, 150, 57) !important;
+    animation: error .125s ease 0s 1 alternate;
+}
+
+@keyframes error {
+    0%{ transform: translateX(0);}
+    25%{ transform: translateX(5px);}
+    75%{ transform: translateX(-5px);}
+    100%{ transform: translateX(0);}
+}
+
+.duplicated{
+    background-color: rgb(223, 151, 151);
+}
+
+
+
+
+@media (min-width: 590px){
+    .question-submit{
+        width: 70%;
+    }
+}

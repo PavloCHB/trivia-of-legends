@@ -1,0 +1,68 @@
+.container{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center; 
+    padding-top: 20px;
+}
+
+
+  .container .routes{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .container a{
+    background-image: url("../../public/background.png");
+    background-size: cover;
+    background-position: center;
+    width: 300px;
+    height: 150px;
+    transition: all .25s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .container a::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--dark);
+    opacity: .5;
+    z-index: 1;
+    transition: all .2s ease;
+  }
+
+  .container a h2{
+    z-index: 2;
+  }
+
+  .container a:hover{
+    transform: translate(0px, -2px);
+  }
+  
+  .container a:hover::before{
+    opacity: .1;
+  }
+  .container a:hover h2{
+    filter: drop-shadow(0px 0px 30px var(--main-color));
+  }
+
+  .container a#champions{
+    background-image: url("../../public/champions.jpg");
+  }
+  .container a#regions{
+    background-image: url("../../public/regions.jpg");
+  }
+  .container a#trivia{
+    background-image: url("../../public/the-game.jpg");
+  }

@@ -1,0 +1,106 @@
+.regions-tittle{
+    padding-top: 50px;
+}
+
+.container-regions{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 30PX;
+}
+
+.region{
+    position: relative;
+    width: min(100%, 1200px);
+    height: cover;
+    padding: 20px 30px;
+    display: flex;
+    flex-flow: column   ;
+    align-items: center;
+    background-size: cover;
+    z-index: inherit;
+}
+
+.region *{
+    z-index: 2;
+}
+
+.region-name{
+    text-transform: uppercase;
+    -webkit-text-stroke: 1px transparent;
+}
+
+.region::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.747);
+    z-index: 1;
+}
+
+
+
+.region h2{
+    margin-bottom: 10px;
+}
+
+.region p{
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    font-family: 'Roboto', sans-serif;
+    background: var(--cream);
+    background: -webkit-linear-gradient(bottom, rgb(103, 71, 31), rgb(203, 172, 98)) padding-box text; 
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+}
+
+
+
+
+.region#bandle-city{
+    background-image: url("https://images.contentstack.io/v3/assets/blt187521ff0727be24/blt57ea8bb74f8733f3/60ee0b95bc44fe5b48ba2a02/bandle-city_splash.jpg");
+}
+
+.region#bilgewater{
+    background-image: url("https://images.contentstack.io/v3/assets/blt187521ff0727be24/blt8efd86a20a7fc6ca/60ee0bd126ed9249f5484b8c/bilgewater_splash.jpg");
+}
+.region#demacia{
+    background-image: url("https://images.contentstack.io/v3/assets/blt187521ff0727be24/bltd170f10ccce6ba7e/614cc12077d06a0c9835f862/demacia_splash.jpeg");
+}
+.region#jonia{
+    background-image: url("https://images.contentstack.io/v3/assets/blt187521ff0727be24/bltcea170f820e544c5/60ee0e19a471a34acb2c1f66/ionia-01.jpg");
+}
+.region#ixtal{
+    background-image: url("https://images.contentstack.io/v3/assets/blt187521ff0727be24/blt9a01601bbdff5c4a/60ee0e385fbfcb5e848229a5/ixtal_splash.jpg");
+}
+.region#noxus{
+    background-image: url("https://images.contentstack.io/v3/assets/blt187521ff0727be24/blt9d0c487b98ba6b42/60ee0ffb975ffd4ff25ec2f5/noxus_splash.jpg");
+}
+.region#piltover{
+    background-image: url("https://images.contentstack.io/v3/assets/blt187521ff0727be24/blt5c307209ccbe2470/60ee10d06610ed4d42bc222e/piltover_splash.jpg");
+}
+.region#shadow-isles{
+    background-image: url("https://images.contentstack.io/v3/assets/blt187521ff0727be24/bltd9cec6dc7ca0fc48/60ee11d22f7fa122fd574a11/shadow-isles_splash.jpg");
+}
+.region#shurima{
+    background-image: url("https://images.contentstack.io/v3/assets/blt187521ff0727be24/blt5924e500520eabd9/60ee11fb94d70a1ef3123825/shurima_splash.jpg");
+}
+.region#targon{
+    background-image: url("https://images.contentstack.io/v3/assets/blt187521ff0727be24/blt1ab39bfee4a3057d/60ee0f894fba2021cde587f6/mount-targon_splash.jpg");
+}
+.region#the-freljord{
+    background-image: url("https://images.contentstack.io/v3/assets/blt187521ff0727be24/bltc15ba510f02e7e45/60ee0d9185b042284396138b/freljord_splash.jpg");
+}
+.region#the-void{
+    background-image: url("https://images.contentstack.io/v3/assets/blt187521ff0727be24/blt4754fc6a91233824/60ee139d5397524ead38918f/void-an-unknowable-power.jpg");
+}
+.region#zaun{
+    background-image: url("https://images.contentstack.io/v3/assets/blt187521ff0727be24/blt3d038a51072c6d5a/614cc18164c8007a9bdec0e2/zaun_splash.jpeg");
+}

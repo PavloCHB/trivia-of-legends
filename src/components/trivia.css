@@ -1,0 +1,450 @@
+.trivia-container{
+    min-height: calc(100vh - 50px);
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.game-selector{
+    padding: 30px 0px;
+    display: flex;
+    flex-flow: row wrap ;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-100vh);
+    opacity: 0;
+    animation: fall 1 .25s forwards  ease;
+    gap: 30px;
+}
+
+.game-selector h2{
+    font-size: 3rem;
+}
+
+.game-selector button{
+    width: 65%;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-size: 15px;
+    color: white;
+    font-weight: bold;
+    background-color: var(--main-color);
+    transition: all .125s ease-in-out;
+    cursor: pointer;
+}
+
+.game-selector button:hover,
+.game-selector button:focus{
+    background-color: var(--main2-color);
+}
+
+.game-selector button#start{
+    background-color: var(--main-color) !important;
+    transform: scale(1);
+    margin-top: 30px;
+    font-size: 25px;
+}
+.game-selector button#start:hover{
+    background-color: var(--main2-color) !important;
+    transform: translateY(-1px) scale(1.05);
+}
+
+.selector{
+    width: 45%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 7.5px;
+}
+
+.selector.hints-selector button{
+    width: 100%;
+}
+.selector.start-selector{
+    width: 100%;
+}
+.selector label{
+    width: 100%;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bold;
+}
+.selector button{
+    text-transform: none !important;
+}
+
+.selector button:not(.selected){
+    background-color: #af8f4f;
+    transform: scale(.9);
+}
+
+@keyframes fall {
+    100%{transform: translateX(0); opacity: 1;}
+}
+
+.pause{
+    height: calc(250px + 190px + 100px);
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 80px;
+}
+
+.pause span{
+    padding: 20px;
+    font-size: 40px;
+    font-weight: bold;
+}
+.pause input[type="button"]{
+    padding: 10px 20px;
+    background-color: var(--main-color);
+    border: none;
+    color: white;
+    transition: all .25s ease;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 50px;
+}
+.pause input[type="button"]:hover,
+.pause input[type="button"]:focus{
+    background-color: var(--main2-color);
+}
+
+.pause-options{
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+}
+
+.pause-button{
+    width: 60px;
+    height: 60px;
+    background-color: transparent;
+    border: none;
+    opacity: 1;
+    cursor: pointer;
+    transition: all .125s ease-in;
+    background-color: var(--main-color);
+    border-radius: 50px;
+    padding: 5px;
+}
+.pause-button img{
+    height: 100%;
+    filter: invert();
+}
+
+.pause-button:hover,
+.pause-button:focus{
+    background-color: var(--main2-color)
+}
+
+.question{
+    height: 250px;
+    margin-bottom: 100px;
+    display: flex;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    padding: 5px 10px;
+    font-size: 2.5rem;
+    -webkit-text-stroke: 1px #80602f;
+    color: #af8f4f;
+    font-weight: bold;
+    z-index: inherit;
+}
+
+
+.answers-container{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    z-index: inherit;
+}
+
+.answers-container button{
+    width: 35vw;
+    height: 80px;
+    background-color: var(--main-color);
+    border: none;
+    outline: none;
+    color: white;
+    transition: all .25s ease;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    z-index: 1;
+}
+
+.answers-container.already-selected button{
+    background-color: var(--dark);
+    opacity: .8;
+    animation: notSelected forwards 1 .125s ease;
+}
+
+.answers-container:not(.already-selected) button:hover{
+    background-color: var(--main2-color);
+}
+
+.answers-container button.right{
+    background-color: rgb(42, 196, 67);
+    opacity: 1;
+    animation: correct forwards 2 .125s ease;
+    z-index: 2;
+}
+.answers-container button.right.unselected{
+    opacity: .8;
+    animation: none;
+    z-index: 2;
+}
+
+.answers-container button.wrong{
+    background-color: red;
+    opacity: 1;
+    animation: wrong forwards 2 .125s ease;
+}
+
+.answers-container button.deleted-by-hint{
+    transform: scale(0);
+    animation: none;
+}
+
+.timer-bar-container{
+    position: relative;
+    width: 40vw;
+    height: 5px;
+    margin-block-start: 10px;
+    background-color: #af8f4f;
+    border-radius: 5px;
+}
+
+.timer-bar-tracker{
+    background-color: var(--main-color);
+    height: 100%;
+    border-radius: 5px;
+    transition-property: width;
+    transition-timing-function: linear;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-duration: .3s;
+    animation-direction: alternate;
+}
+
+.timer-bar-tracker.restarting{
+    height: 8px;
+    width: 100%;
+    transition: width 0s linear, background-color .125s ease-in-out;
+}
+
+.time-out{
+    background-color: red;
+    width: 38vw;
+    height: 7px;
+    animation: wrong forwards 2 .125s ease;
+}
+
+.trackers-container{
+    display: flex;
+    position: relative;
+    gap: 20px;
+}
+
+.trackers-container span img{
+    height: 22px;
+    width: auto;
+    filter: invert();
+}
+
+.tracker{
+    font-size: 20px;
+    font-weight: 700;
+    padding: 10px;
+    background-color: var(--main-color);
+    border-radius: 50px;
+    margin-top: 20px;
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.hints{
+    padding: 10px 15px;
+}
+
+.hints:hover{
+    background-color: var(--main2-color);
+}
+
+.hints.no-hints{
+    background-color: var(--dark);
+}
+
+
+.results-display{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    gap: 20px;
+    background-color: var(--main-color);
+    padding: 20px;
+    animation: correct forwards 2 .1s ease;
+}
+
+.results span{
+    display: flex;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    padding: 5px 10px;
+    font-size: 2.5rem;
+    -webkit-text-stroke: 1px #80602f;
+    color: #af8f4f;
+    font-weight: bold;
+}
+
+.results p{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.results button{
+    background-color: var(--dark);
+    color: white;
+    height: 30px;
+    font-weight: 20px;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    border-radius: 50px;
+}
+
+.results a{
+    text-decoration: underline;
+}
+
+.results button:hover,
+.results button:focus{
+    background-color: var(--dark-hover);
+}
+
+button,
+input[type="button"]{
+    cursor: pointer;
+}
+
+button:hover,
+button:focus,
+input[type="button"]:hover,
+input[type="button"]:focus{
+    transform: translateY(-1px);
+}
+
+@keyframes correct {
+    0%{ transform: rotate(0deg);}
+    25%{ transform: rotate(3deg);}
+    75%{ transform: rotate(-3deg);}
+    100%{ transform: rotate(0deg);}
+}
+@keyframes wrong {
+    0%{ transform: translateX(0);}
+    25%{ transform: translateX(5px);}
+    75%{ transform: translateX(-5px);}
+    100%{ transform: translateX(0);}
+}
+@keyframes notSelected {
+    0%{ transform: scale(1); opacity: 1;}
+    100%{ transform: scale(.99); opacity: .8;}
+}
+@keyframes danger {
+    0%{ background-color: red}
+    100%{ background-color: rgb(139, 6, 6)}
+}
+
+@media (min-width: 380px){
+    .answers-container button{
+        font-size: 16px;
+    }
+}
+@media (min-width: 590px){
+    .answers-container button{
+        font-size: 20px;
+    }
+    .selector{
+        width: 80%;
+        flex-flow: row wrap;
+    }
+    .game-selector button,
+    .selector.hints-selector button{
+        width: auto;
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 800px){
+    .game-selector{
+        width: 80vw;
+        min-height: 80vh;
+        flex-flow: column;
+    }
+    .selector.hints-selector button{
+        width: auto;
+    }
+}
+
+
+@media (max-height: 600px){
+    .trivia-container h2{
+        font-size: 30px;
+    }
+    .trivia-container label{
+        margin-top: 5px;
+        margin-bottom: 0;
+        font-size: 12px;
+    }
+    .trivia-container button,
+    .trivia-container .hints-selector button{
+        font-size: 12px;
+    }
+    .trivia-container button#start{
+        font-size: 14px;
+        margin-top: 0;
+    }
+    .game-selector{
+        padding: 10px 0;
+        gap: 10px;
+    }
+}
+
+@media (max-height: 800px){
+    .game span.question{
+        font-size: 1.5rem;
+        height: 150px;
+        margin-bottom: 10px;
+    }
+    .game .answers-container button{
+        height: 60px;
+    }
+}
+
